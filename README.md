@@ -17,12 +17,17 @@ Agricrafture is Copyright (C) 2012 Key Bored Industries.
 You may:
 
 -Download the source code
+
 -Modify the source code
+
 -Recompile the source code, modified or otherwise
+
 -Use this source code as learning material for other code
 
 You may not:
 
 -Distribute unmodified source code without linking to this page, except for portions used as reference when attempting to bugfix or create new code
+
 -Distribute recompiled source code [this may change in the future]
+
 --Original works created using the source code as reference are not considered bound by this license.
