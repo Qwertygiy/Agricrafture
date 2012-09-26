@@ -64,7 +64,7 @@ public class GuiCulinary extends GuiContainer
 				{
 					//te.workItem();
 					te.shouldWork = true;
-					PacketHandlerCore.getPacketCulinary(te);
+					//PacketHandlerCore.getPacketCulinary(te);
 				}
 			}
 		}

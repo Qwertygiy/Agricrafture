@@ -22,6 +22,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.NetworkMod.SidedPacketHandler;
 import cpw.mods.fml.common.registry.*;
 import java.lang.Integer;
 import java.io.File;
@@ -30,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Mod( modid = "KBIAgricrafture", name="Agricrafture", version="0.0.0.1")
-@NetworkMod(channels = {"AgricraftureCore"}, packetHandler = PacketHandlerCore.class, clientSideRequired = true, serverSideRequired = false)
+@NetworkMod(clientSideRequired = true, serverSideRequired = false, clientPacketHandlerSpec = @SidedPacketHandler(channels = {"ChargingBench"}, packetHandler = ClientPacketHandler.class), serverPacketHandlerSpec = @SidedPacketHandler(channels = ("ChargingBench"), packetHandler = ServerPacketHandler.class))
 public class AgricraftureMain
 {
 

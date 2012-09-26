@@ -10,6 +10,7 @@ import net.minecraftforge.common.ISidedInventory;
 import net.minecraftforge.common.ForgeDirection;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
+import cpw.mods.fml.common.FMLCommonHandler;
 
 public class TileEntityCulinary extends TileEntity implements IInventory, ISidedInventory 
 {
@@ -118,7 +119,11 @@ public class TileEntityCulinary extends TileEntity implements IInventory, ISided
         public void closeChest() {}
        
         @Override
-        public void readFromNBT(NBTTagCompound tagCompound) {
+        public void readFromNBT(NBTTagCompound tagCompound) 
+		{
+			Side side = FMLCommonHandler.instance().getEffectiveSide();
+			if (side != Side.CLIENT)
+			{
                 super.readFromNBT(tagCompound);
                
                 NBTTagList tagList = tagCompound.getTagList("Inventory");
@@ -131,11 +136,15 @@ public class TileEntityCulinary extends TileEntity implements IInventory, ISided
                 }
 				
 				this.workTime = tagCompound.getShort("ClicksLeft");
+			}
         }
 
         @Override
         public void writeToNBT(NBTTagCompound tagCompound) 
 		{
+			Side side = FMLCommonHandler.instance().getEffectiveSide();
+			if (side != Side.CLIENT)
+			{
 				tagCompound.setShort("ClicksLeft", (short)this.workTime);
 				
                 NBTTagList itemList = new NBTTagList();
@@ -151,12 +160,13 @@ public class TileEntityCulinary extends TileEntity implements IInventory, ISided
                 tagCompound.setTag("Inventory", itemList);
 				
 				super.writeToNBT(tagCompound);
+			}
         }
 		
-		@Override
+		/*@Override
 		public Packet getDescriptionPacket() {
 			return PacketHandlerCore.getPacketCulinary(this);
-		}
+		}*/
 		
 		public void handlePacketData(int[] itemdata)
 		{
@@ -415,7 +425,7 @@ public class TileEntityCulinary extends TileEntity implements IInventory, ISided
 					}
 				}
 			}
-			PacketHandlerCore.getPacketCulinary(this);
+			//PacketHandlerCore.getPacketCulinary(this);
 		}
 }
 

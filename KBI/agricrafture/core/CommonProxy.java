@@ -19,6 +19,8 @@ import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.common.network.PacketDispatcher;
+import cpw.mods.fml.common.network.Player;
 
 public class CommonProxy /*implements IGuiHandler*/
 {
@@ -34,6 +36,16 @@ public class CommonProxy /*implements IGuiHandler*/
 	public World getClientWorld() 
 	{
 		return null;
+	}
+	
+	public static void sendPacketToPlayer(Packet250CustomPayload packet, EntityPlayerMP player)
+	{
+		PacketDispatcher.sendPacketToPlayer(packet, (Player)player);
+	}
+
+	public static void sendPacketToServer(Packet250CustomPayload packet)
+	{
+		PacketDispatcher.sendPacketToServer(packet);
 	}
 
 	/*
